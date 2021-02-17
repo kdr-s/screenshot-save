@@ -12,6 +12,7 @@ makedirs(folder, exist_ok=True)
 while True:
     im = ImageGrab.grabclipboard()
     if isinstance(im, Image.Image):
+        im = im.convert('RGB')
         # ２つの画像が同一の場合ImageChops.differenceはすべて0の画像を返す
         if ImageChops.difference(im, last_im).getbbox() != None:
             im.save(folder + datetime.now().strftime("%Y%m%d-%H%M%S") + ".png")
